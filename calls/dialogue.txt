@@ -1,0 +1,41 @@
+Hello everyone !
+N – I'm Nishant a blockchain dev (Cardano)
+
+S – I'm shanmukh, a vfx artist (Mantrix Studios)
+
+S - We created PROXIE, an advanced voice assistant.
+
+N – It is based a fusion of different Nueral Networks like GPT-3, Brainshop AI, Rasa, Tensorflow and Bloom 
+
+S – It is trained on over 75 billion nueral cells and its possibilities are only limited to your imagination 
+
+S – The scientific principles used here are – MQTTserver connection, Automatic Speech Recogntion, GTTS (Google Text to Speech), ANN (Artificial Nueral Networks) ,  
+
+N – It is trained on many more nueral cells than an average voice assistant and is way more accurate to converse with. 
+
+S – The most prominent features or modes are - 
+
+N -  1) “The Summarization mode” where it can explain a 12th grader topic to a 2nd grader.
+       2) “the grammar correction mode” where it corrects the grammatical mistakes and reads out the correct sentence.
+       3) “Q and A mode” where it can fully converse with a human being.	 
+       4) It is even designed in a “Portable and pocket friendly” way !
+
+S -  We have intergrated a variety of different plugins to extend the functionalities of these nueral networks, They are -  
+
+N – APISetu – which has all the official govt. Data 
+
+S – “Condensation of Court Sessions into just a few lines” : Here, using a variety of algorithms, the live RSS feed of several courts, which contains tens of pages of info, is retrieved and condensed into only a few lines. 
+
+S – This can be made using the Official kanoon api and our nueral engines 
+
+N –  our voice assistant has all these new and advances features, differentiating it from the other voice assistants.
+
+S – we designed the voice assistant in a cost efficient way which will be less than 1500rupees unlike the other voice assistants which are 3-4 thousand 
+
+N-  It is mainly focused on Aspiring Students, researchers, Busy professionals, People working in judiciary and journalists 
+
+S- our main moto for this project is that to make this the first ever voice assistant made in India which is portable and affordable !! 
+
+
+
+N – Here now we will show the working mode
