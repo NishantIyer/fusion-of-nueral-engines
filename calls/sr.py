@@ -4,11 +4,15 @@ from gtts import gTTS  # google text to speech
 import os  # to save/open files
 import openai
 import requests
+from PIL import Image
+from io import BytesIO
 num = 1
 andh = "The allegations in the complaint are that the petitioner, who is the husband of the de facto complainant, had demanded Rs.1,00,000/- as dowry and when the same was not paid, the petitioner had treated the de facto complainant with cruelty and had also assaulted her. </p> This data summarizes four cases from Andhra Pradesh High Court - Amravati involving the State of Andhra Pradesh, M/S.Vyshno Constructions, Attunuri Koti Reddy A. Rama Koti, Kollu Ankababu, and Nimmagadda Rama Krishna. In the first case, the court is assessing whether or not the writ petitioners/contractors are entitled to interest in terms of clause 43 of the Conditions of Contract. In the second case, a complaint was filed against accused Nos. 1 to 6 for suspecting the deceased of theft which led to him committing suicide. The third case examines a journalist accused of forwarding a social media post which alleged the wife of a key-officer in the Chief Minister's office was involved in a gold smuggling investigation.  "
 bom = "This data pertains to four different court cases in the Bombay High Court on December 2, 2022. In the first case, the petitioners, borrowers, sought a writ of mandamus and declarations that a notification issued under the Recovery of Debts and Bankruptcy Act, 1993 be declared unconstitutional, that the transfer of their case from one Debt Recovery Tribunal to another be declared void, and that the Micro, Small and Medium Enterprises Development Act, 2006 prevail over the Securitisation and Reconstruction of Financial Assets and Enforcement of Security Interest Act, 2002. In the second case, the appellants were convicted and sentenced to life imprisonment and a fine of Rs.5000/- for the offense punishable under Section 302 read with Section 34 of the Indian Penal Code. In the third case, the appellant, an automobile manufacturing company, was held to be entitled to recover an amount of Rs.12,80,480/- from the respondent. In the fourth case, the respondent alleged that after marriage she was maltreated by the applicants and driven out of the house after they demanded Rs.1,00,000/- for a house. "
 madras = "Respondents This case is about M/S.Malur Tubes Private Limited vs The State Of Tamil Nadu on 2 December, 2022. The Petitioners are represented by Mr.A.Ramesh, Senior Counsel and Mr.C.Arunkumar while the Respondents are represented by Mr.S.Balaji, Government Advocate (Crl.Side). The Petitioners are Shri Lakshmi Metal Udyog Ltd., represented by its Director, Mr.Vinod Kumar Singhal, and Mr.Vinod Kumar Singhal himself, while the Respondents are the State of Tamil Nadu and the Inspector of Police, Central Crime Branch, Egmore, Chennai. The case is C.R.P.(MD)No.5438 of 2015. "
 sup = "Resettlement Act, 2013 (hereinafter referred to as “Act, 2013”), the Government of NCT of Delhi and Anr. have preferred the present appeal. This data summarizes five appeals filed by the Land Acquisition Collector, Central Bureau of Investigation, State of Jharkhand and other authorities, Government of NCT of Delhi and original applicants - plaintiffs against the judgments and orders passed by the High Courts of Delhi, Madhya Pradesh, Kerala, Jharkhand and Madras respectively. The appeals are filed for acquisitions of lands and granting of anticipatory bail to the accused. "
+
+beng = "on 6 December,  2022This data describes four cases being heard in the Calcutta High Cour on 6 December, 2022. In the first case, Remington Rand Of India Ltd vs Jaypee Trading Company Ltd, there are several lawyers representing the applicant. In the second case, Avlokan Commosales Private Ltd vs State Bank Of India & Anr, a settlement was reached between the borrower and Phoenix ARC and a sale certificate was issued. In the third case, Tripti Ranjan Roy vs Rajanvir Singh Kapur, the petitioner claimed for subsistence allowance and additional costs. In the fourth case, Dredging And Desiltation Company vs Mackintosh Burn And Northern, there are several lawyers representing the plaintiff and defendants. The fifth case, Principal Commissioner Of Income Tax vs Jis Foundation, requires an Accounts Officer to appear before the court. The last case, Mangalam Fashions Ltd & Anr vs Kolkata Municipal Corporation & Ors, is disposed of, with an order for an urgent photostat certified copy if applied for."
 hyd = "This data is from three cases from the Telangana High Court. In the first case, Syed Mahmood vs T.Vijay Kumar, the Regional Joint Director of School Education rejected the petitioner's request for benefits flowing out of G.O.Ms.No.21. In the second case, Sri. B.Anil vs State Of Telangana, the petitioner leased a major portion of the 5th floor of Diamond Towers and incurred costs for improvements and infrastructure. The 5th respondent then tried to join the study centre as a partner, but was rejected by the petitioner. In the third case, D.Bala Prasada Rao, Hyderabad vs The Secretary, Energy Department, both petitioners joined the services of Agros Limited as Junior Engineers and applied for the post of Assistant Managers/District Managers, with their earlier service and benefits with Agros Limited being protected. "
 openai.api_key = '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'
 def assistant_speaks(output):
@@ -140,6 +144,18 @@ def news():
     globals()['title'] = str(titl)[2:-2]
     globals()['description1'] = str(description1)[2:-2]
     image = str(image)[2:-2]
+def dall():
+    dal = get_audio().lower()
+    response = openai.Image.create(
+        prompt=str(dal),
+        n=1,
+        size="1024x1024"
+     )
+    image_url = response['data'][0]['url']
+    url = image_url
+    response = requests.get(url)
+    img = Image.open(BytesIO(response.content))
+    img.show()
 if __name__ == "__main__":
     assistant_speaks("Hello, I am Proxie. The most advanced voice assistant at your service")
     while 1==1:
@@ -170,13 +186,14 @@ if __name__ == "__main__":
         if "supreme court" in str(text):
             assistant_speaks(sup)
         if "weather" in str(text):
-            weaather()
+            weather()
             assistant_speaks(f"Weather - {weat} , Description - {description} , Temperature - {temp}")
         if "news" in str(text):
             news()
-            assistant_speaks(f"{Title}  {Description}")
+            assistant_speaks(f"{title}  {description}")
+        if "dall" in str(text) or "dail" in str(text) or "image gen" in str(text) or "image generation" in str(text):
+            dall()
         else:
-            if str(text) != grammar or str(text) != q and a or str(text) != summarise:
                 ur = f"http://api.brainshop.ai/get?bid=170226&key=qje9vuLTq5llXvvE&uid=[uid]&msg={str(text)}"
                 r = requests.get(ur)
                 json_data = r.json()
